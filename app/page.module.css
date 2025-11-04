@@ -3,6 +3,8 @@
 .container {
   min-height: 100vh;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Animated Background - Galaxy Style */
@@ -17,6 +19,8 @@
     radial-gradient(ellipse at top, #1b2735 0%, #090a0f 100%),
     radial-gradient(ellipse at bottom, #1e3a5f 0%, #0a0e27 100%);
   overflow: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Animated stars */
@@ -34,7 +38,9 @@
   background-repeat: repeat;
   background-size: 200px 200px;
   opacity: 0.5;
+  -webkit-animation: twinkle 3s ease-in-out infinite;
   animation: twinkle 3s ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* Nebula effect */
@@ -48,7 +54,14 @@
     radial-gradient(ellipse at 90% 80%, rgba(0, 212, 170, 0.12) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(147, 51, 234, 0.08) 0%, transparent 60%),
     radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+  -webkit-animation: nebula 20s ease-in-out infinite alternate;
   animation: nebula 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@-webkit-keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
 }
 
 @keyframes twinkle {
@@ -56,12 +69,27 @@
   50% { opacity: 0.8; }
 }
 
-@keyframes nebula {
+@-webkit-keyframes nebula {
   0% { 
+    -webkit-transform: scale(1) rotate(0deg);
     transform: scale(1) rotate(0deg);
     opacity: 0.8;
   }
   100% { 
+    -webkit-transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes nebula {
+  0% { 
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% { 
+    -webkit-transform: scale(1.1) rotate(5deg);
     transform: scale(1.1) rotate(5deg);
     opacity: 1;
   }
@@ -73,6 +101,7 @@
   top: 0;
   width: 100%;
   background: rgba(13, 17, 23, 0.8);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 1rem 2rem;
   z-index: 1000;
@@ -82,14 +111,21 @@
 .navContainer {
   max-width: 1200px;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
+  background: -webkit-linear-gradient(135deg, #512bd4, #00d4aa);
   background: linear-gradient(135deg, #512bd4, #00d4aa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -98,10 +134,14 @@
 
 .navList {
   list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 2rem;
   margin: 0;
   padding: 0;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .navList button {
@@ -111,9 +151,11 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  -webkit-transition: color 0.3s;
   transition: color 0.3s;
   padding: 0.5rem;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .navList button::after {
@@ -124,22 +166,31 @@
   width: 0;
   height: 2px;
   background: #512bd4;
+  -webkit-transition: width 0.3s;
   transition: width 0.3s;
 }
 
-.navList button:hover {
+.navList button:hover,
+.navList button:active {
   color: #e6edf3;
 }
 
-.navList button:hover::after {
+.navList button:hover::after,
+.navList button:active::after {
   width: 100%;
 }
 
 /* Hero Section */
 .hero {
   min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
   padding: 2rem;
@@ -148,6 +199,7 @@
 
 .heroContent {
   max-width: 800px;
+  -webkit-animation: fadeInUp 1s ease-out;
   animation: fadeInUp 1s ease-out;
 }
 
@@ -165,6 +217,7 @@
 .hero h1 {
   font-size: 4rem;
   margin-bottom: 1rem;
+  background: -webkit-linear-gradient(135deg, #e6edf3 0%, #6939e5 100%);
   background: linear-gradient(135deg, #e6edf3 0%, #6939e5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -179,7 +232,13 @@
 }
 
 .typingCursor {
+  -webkit-animation: blink 1s infinite;
   animation: blink 1s infinite;
+}
+
+@-webkit-keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 @keyframes blink {
@@ -195,9 +254,14 @@
 }
 
 .ctaButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -208,17 +272,28 @@
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .btnPrimary {
+  background: -webkit-linear-gradient(135deg, #512bd4, #6939e5);
   background: linear-gradient(135deg, #512bd4, #6939e5);
   color: white;
 }
 
-.btnPrimary:hover {
+.btnPrimary:hover,
+.btnPrimary:active {
+  -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+  -webkit-box-shadow: 0 10px 30px rgba(81, 43, 212, 0.4);
   box-shadow: 0 10px 30px rgba(81, 43, 212, 0.4);
 }
 
@@ -228,7 +303,8 @@
   border: 2px solid #21262d;
 }
 
-.btnSecondary:hover {
+.btnSecondary:hover,
+.btnSecondary:active {
   border-color: #512bd4;
   background: rgba(81, 43, 212, 0.1);
 }
@@ -237,18 +313,38 @@
   position: absolute;
   bottom: 2rem;
   left: 50%;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+  -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    -webkit-transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    -webkit-transform: translateX(-50%) translateY(-5px);
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateX(-50%) translateY(0);
     transform: translateX(-50%) translateY(0);
   }
   40% {
+    -webkit-transform: translateX(-50%) translateY(-10px);
     transform: translateX(-50%) translateY(-10px);
   }
   60% {
+    -webkit-transform: translateX(-50%) translateY(-5px);
     transform: translateX(-50%) translateY(-5px);
   }
 }
@@ -269,22 +365,35 @@
 }
 
 .techMarquee {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 3rem;
+  -webkit-animation: scroll 30s linear infinite;
   animation: scroll 30s linear infinite;
 }
 
 .techMarquee:hover {
+  -webkit-animation-play-state: paused;
   animation-play-state: paused;
 }
 
+@-webkit-keyframes scroll {
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+}
+
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { -webkit-transform: translateX(0); transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 }
 
 .techItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
   padding: 1rem 2rem;
@@ -292,18 +401,28 @@
   border-radius: 12px;
   border: 1px solid rgba(81, 43, 212, 0.3);
   white-space: nowrap;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-.techItem:hover {
+.techItem:hover,
+.techItem:active {
+  -webkit-transform: translateY(-5px);
   transform: translateY(-5px);
   border-color: #512bd4;
+  -webkit-box-shadow: 0 10px 30px rgba(81, 43, 212, 0.3);
   box-shadow: 0 10px 30px rgba(81, 43, 212, 0.3);
 }
 
 .techIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   color: #e6edf3;
 }

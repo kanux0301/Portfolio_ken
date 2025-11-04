@@ -246,7 +246,7 @@ export default function Home() {
       company: 'Security Bank Corporation',
       period: '2015 - 2019',
       responsibilities: [
-        '🏆 Technical Lead for Asset and Liability Management System (ALM) project',
+        'Technical Lead for Asset and Liability Management System (ALM) project',
         'Developed bank reconciliation program processing inter-bank transactions',
         'Built issue tracking system for complex banking projects',
         'Maintained treasury system and third-party integrations',
@@ -286,7 +286,7 @@ export default function Home() {
 
       <section id="home" className={styles.hero}>
         <div className={styles.heroContent}>
-          <div className={styles.heroTag}>✨ Available for new opportunities</div>
+          <div className={styles.heroTag}>Available for new opportunities!</div>
           <h1>Hi, I'm Kenneth Ajero</h1>
           <div className={styles.typingText}>
             {typedText}<span className={styles.typingCursor}>|</span>
@@ -315,15 +315,15 @@ export default function Home() {
       </div>
 
       <section id="about" className={styles.section}>
-        <h2>My Story</h2>
+        <h2>Bio</h2>
         
         <div className={`${styles.aboutStory} ${styles.fadeIn}`}>
           <p className={styles.storyParagraph}>
-            I’m a .NET-focused engineer who has built systems across banking, data analytics, automotive tech, and IoT. I specialize in cloud-native architecture, microservices, and scalable enterprise platforms.  
+            A .NET-focused engineer who has built systems across banking, data analytics, automotive tech, and IoT. I specialize in cloud-native architecture, microservices, and scalable enterprise platforms.  
           </p>
           
           <p className={styles.storyParagraph}>
-            I love solving real problems, modernizing applications, and creating solutions that deliver meaningful impact. Always learning. Always building.
+            I love solving problems, modernizing applications, and creating solutions that deliver meaningful impact. Always learning. Always building.
           </p>
         </div>
 
@@ -530,7 +530,7 @@ export default function Home() {
             </a>
           </div>
           <p className={styles.footerText}>© 2025 Kenneth Ajero. All rights reserved.</p>
-          <p className={styles.footerSubtext}>Built with passion for .NET development 💜</p>
+          <p className={styles.footerSubtext}>Built with passion for .NET development</p>
         </div>
       </footer>
     </div>
