@@ -328,7 +328,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className={styles.scrollIndicator}></div>
+        <div className={styles.scrollIndicator} onClick={() => scrollToSection('about')}></div>
       </section>
 
       <div className={styles.techStackSection}>
