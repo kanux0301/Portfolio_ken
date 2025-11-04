@@ -93,18 +93,24 @@ export default function Home() {
 
   // Parallax effect
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector(`.${styles.heroContent}`);
-      if (hero && scrolled < window.innerHeight) {
-        (hero as HTMLElement).style.transform = `translateY(${scrolled * 0.5}px)`;
-        (hero as HTMLElement).style.opacity = `${1 - scrolled / 700}`;
-      }
-    };
+    const hero = document.querySelector(`.${styles.heroContent}`) as HTMLElement | null
+    if (!hero) return
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const isMobile = window.innerWidth <= 768
+    const speed = isMobile ? 0.25 : 0.5
+    const fadeDistance = isMobile ? 350 : 700
+
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset
+      if (scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * speed}px)`
+        hero.style.opacity = `${1 - scrolled / fadeDistance}`
+      }
+    }
+
+   window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

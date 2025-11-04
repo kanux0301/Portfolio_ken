@@ -254,9 +254,9 @@ Humanizes the portfolio by showing personal interests and work-life balance.
 ### Contact Section
 
 **Contact Methods:**
-- Email (ajerokenn@gmail.com)
-- Phone (0995 881 9687)
-- Location (Makati, Philippines)
+- Email
+- Phone 
+- Location 
 - LinkedIn profile
 
 **Features:**
@@ -444,58 +444,6 @@ npm run build
 npm start
 ```
 
-### Static Export (Optional)
-
-For pure static hosting, update `next.config.js`:
-
-```javascript
-module.exports = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
-}
-```
-
-Then build:
-```bash
-npm run build
-```
-
-Output will be in the `out` directory.
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Install Vercel CLI
-```bash
-npm install -g vercel
-```
-
-2. Deploy
-```bash
-vercel
-```
-
-3. Follow prompts for configuration
-
-### Other Platforms
-
-**Netlify:**
-- Connect GitHub repository
-- Set build command: `npm run build`
-- Set publish directory: `out` (for static export)
-
-**AWS / Azure / GCP:**
-- Use Docker deployment (see Docker section)
-- Configure load balancer and CDN
-- Set up SSL certificates
-
-**GitHub Pages:**
-- Enable static export
-- Use GitHub Actions workflow
-- Configure custom domain
 
 ## Docker Support
 
@@ -540,18 +488,6 @@ docker-compose down
 - Health checks included
 - Resource limits configured
 - Logging configuration
-
-## Configuration
-
-### Environment Variables
-
-Create `.env.local` for local development:
-
-```env
-NODE_ENV=production
-PORT=3000
-NEXT_PUBLIC_SITE_URL=https://kajero.dev
-```
 
 ### Next.js Configuration
 
@@ -618,14 +554,3 @@ NEXT_PUBLIC_SITE_URL=https://kajero.dev
 ## License
 
 This project is proprietary and confidential.
-
-## Contact
-
-**Kenneth Ajero**
-- Email: ajerokenn@gmail.com
-- Phone: 0995 881 9687
-- Location: Makati, Philippines
-
----
-
-Built with Next.js 14 | Deployed on Vercel | Optimized for Performance
