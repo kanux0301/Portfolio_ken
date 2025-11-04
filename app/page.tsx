@@ -111,7 +111,28 @@ export default function Home() {
    window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+  
+  // Parallax effect - arrow down
+  useEffect(() => {
+    const hero = document.querySelector(`.${styles.scrollIndicator}`) as HTMLElement | null
+    if (!hero) return
 
+    const isMobile = window.innerWidth <= 768
+    const speed = isMobile ? 0.25 : 0.5
+    const fadeDistance = isMobile ? 350 : 700
+
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset
+      if (scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * speed}px)`
+        hero.style.opacity = `${1 - scrolled / fadeDistance}`
+      }
+    }
+
+   window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
