@@ -1,23 +1,46 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { JetBrains_Mono, IBM_Plex_Sans, Major_Mono_Display } from 'next/font/google';
 import './globals.css';
 
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+const sans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
+});
+
+const display = Major_Mono_Display({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: '400',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Kenneth Ajero - .NET Developer Portfolio',
-  description: 'Portfolio of Kenneth Ajero - .NET Developer specializing in enterprise applications, IoT solutions, cloud microservices, and Azure. 8+ years of experience building scalable applications.',
-  keywords: 'Kenneth Ajero, .NET Developer, C#, ASP.NET Core, Azure, Microservices, IoT, Software Engineer, Philippines',
+  title: 'kenneth-ajero v9.2.0 — Software Engineer',
+  description:
+    'Live documentation for Kenneth Ajero — nine years of .NET, IoT, and cloud microservices. Running in production since 2015.',
+  keywords:
+    'Kenneth Ajero, .NET Developer, C#, ASP.NET Core, Azure, Microservices, IoT, Software Engineer, Philippines',
   authors: [{ name: 'Kenneth Ajero' }],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
-  themeColor: '#512bd4',
   openGraph: {
-    title: 'Kenneth Ajero - .NET Developer Portfolio',
-    description: 'Building scalable enterprise applications with C#, ASP.NET Core, and Azure',
+    title: 'kenneth-ajero v9.2.0',
+    description: 'A software engineer, documented as a system.',
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#0E1014',
 };
 
 export default function RootLayout({
@@ -26,12 +49,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${mono.variable} ${sans.variable} ${display.variable}`}
+    >
       <head>
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();",
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
